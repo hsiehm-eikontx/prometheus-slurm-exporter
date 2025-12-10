@@ -51,6 +51,23 @@ func main() {
 
 	// Turn on GPUs accounting only if the corresponding command line option is set to true.
 	if *gpuAcct {
+		// from https://github.com/vpenso/prometheus-slurm-exporter/pull/120/files
+		log.Infof("GPU accounting enabled, detecting GPU resources...")
+		
+		// Get GPU metrics for logging
+		gpuMetrics := GPUsGetMetrics()
+		log.Infof("GPU Detection Results:")
+		log.Infof("  Total GPUs detected: %.0f", gpuMetrics.total)
+		log.Infof("  Allocated GPUs: %.0f", gpuMetrics.alloc)
+		log.Infof("  Idle GPUs: %.0f", gpuMetrics.idle)
+		log.Infof("  GPU Utilization: %.2f%%", gpuMetrics.utilization*100)
+		
+		if gpuMetrics.total == 0 {
+			log.Warnf("No GPUs detected in SLURM cluster. Please check:")
+			log.Warnf("  1. SLURM GRES configuration for GPUs")
+			log.Warnf("  2. 'sinfo' command output format")
+			log.Warnf("  3. GPU resource naming in SLURM (should be 'gpu:*')")
+		}
 		prometheus.MustRegister(NewGPUsCollector())   // from gpus.go
 	}
 
