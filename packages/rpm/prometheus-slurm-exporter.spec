@@ -49,7 +49,7 @@ install -m 644 %{SOURCE3} %{buildroot}/usr/share/doc/prometheus-slurm-exporter-%
 
 %clean
 rm -rf %{buildroot}
- 
+
 %pre
 getent group prometheus >/dev/null || groupadd -r prometheus
 getent passwd prometheus >/dev/null || \

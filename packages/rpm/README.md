@@ -16,7 +16,7 @@ echo "%_topdir $HOME/rpmbuild" > ~/.rpmmacros
 ```
 
 ### Prepare the build
- 
+
 4. Clone this repo:
 ```bash
 git clone https://github.com/vpenso/prometheus-slurm-exporter.git

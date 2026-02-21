@@ -58,7 +58,7 @@ Full commit history per tag: https://github.com/vpenso/prometheus-slurm-exporter
 * **0.2**
   - Fix issue #3
 
-* **0.1** 
+* **0.1**
   - Basic prototype
   - Merge PR#2
   - Add Grafana dashboard
