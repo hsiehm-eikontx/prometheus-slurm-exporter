@@ -1,6 +1,6 @@
 # Building the prometheus-slurm-exporter snap
 Packaging and delivering the prometheus-slurm-exporter as a snap provides users of prometheus-slurm-exporter
-a hardened, streamlined, and idempotent experience when consuming this software. See [snapcraft](https://snapcraft.io/) for more information on snaps. 
+a hardened, streamlined, and idempotent experience when consuming this software. See [snapcraft](https://snapcraft.io/) for more information on snaps.
 
 
 ### Prereqs
@@ -71,7 +71,7 @@ slurm_nodes_fail 0
 # TYPE slurm_nodes_idle gauge
 slurm_nodes_idle 1
 
-... 
+...
 
 # TYPE slurm_scheduler_backfilled_jobs_since_start_total gauge
 slurm_scheduler_backfilled_jobs_since_start_total 0

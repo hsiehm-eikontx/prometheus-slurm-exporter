@@ -35,6 +35,8 @@ slurm_node_cpus_other{name="a048",status="mix"} 0
 slurm_node_cpus_total{name="a048",status="mix"} 16
 slurm_node_mem_allocated{name="a048",status="mix"} 179384
 slurm_node_mem_total{name="a048",status="mix"} 193000
+slurm_node_gpu_allocated{gputype="rtx5000",name="a048",status="mix"} 2
+slurm_node_gpu_total{gputype="rtx5000",name="a048",status="mix"} 4
 
 */
 
