@@ -43,7 +43,7 @@ var listenAddress = flag.String(
 
 var gpuAcct = flag.Bool(
 	"gpus-acct",
-	false,
+	true,
 	"Enable GPUs accounting")
 
 func main() {
@@ -53,7 +53,7 @@ func main() {
 	if *gpuAcct {
 		// from https://github.com/vpenso/prometheus-slurm-exporter/pull/120/files
 		log.Infof("GPU accounting enabled, detecting GPU resources...")
-		
+
 		// Get GPU metrics for logging
 		gpuMetrics := GPUsGetMetrics()
 		log.Infof("GPU Detection Results:")
@@ -61,7 +61,7 @@ func main() {
 		log.Infof("  Allocated GPUs: %.0f", gpuMetrics.alloc)
 		log.Infof("  Idle GPUs: %.0f", gpuMetrics.idle)
 		log.Infof("  GPU Utilization: %.2f%%", gpuMetrics.utilization*100)
-		
+
 		if gpuMetrics.total == 0 {
 			log.Warnf("No GPUs detected in SLURM cluster. Please check:")
 			log.Warnf("  1. SLURM GRES configuration for GPUs")
