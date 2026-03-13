@@ -26,6 +26,7 @@ import (
 )
 
 func UsersData() []byte {
+        /* squeue -a -r -h -O 'JobID:|,UserName:|,State:|,NumCPUs:|,tres-per-node' */
         cmd := exec.Command("squeue","-a","-r","-h","-o %A|%u|%T|%C|%b")
         stdout, err := cmd.StdoutPipe()
 	if err != nil {
@@ -56,6 +57,7 @@ func ParseUsersMetrics(input []byte) map[string]*UserJobMetrics {
         users := make(map[string]*UserJobMetrics)
         lines := strings.Split(string(input), "\n")
         for _, line := range lines {
+                gpus = 0
                 if strings.Contains(line,"|") {
                         user := strings.Split(line,"|")[1]
                         _,key := users[user]
@@ -76,6 +78,7 @@ func ParseUsersMetrics(input []byte) map[string]*UserJobMetrics {
 					break
 				}
 			}
+                        /* log.Printf("%f %s %s\n", gpus, user, trespn) */
                         switch {
                         case pending.MatchString(state) == true:
                                 users[user].pending++
