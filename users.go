@@ -72,7 +72,7 @@ func ParseUsersMetrics(input []byte) map[string]*UserJobMetrics {
                         suspended := regexp.MustCompile(`^suspended`)
 			trespn := strings.Split(line,"|")[4]
 			for _, token := range strings.Split(trespn, ",") {
-				if strings.HasPrefix(token, "gpu:") {
+				if strings.HasPrefix(token, "gpu:") || strings.HasPrefix(token, "gres:gpu:") {
 					parts := strings.Split(token, ":")
 					gpus, _ = strconv.ParseFloat(parts[len(parts)-1], 64)
 					break
